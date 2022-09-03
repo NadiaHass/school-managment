@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.tasdjilati.ui.main.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_studentsListFragment"
+            app:destination="@id/studentsListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_studentsEnterFragment"
+            app:destination="@id/studentsEnterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_studentsExitFragment"
+            app:destination="@id/studentsExitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentsEnterFragment"
+        android:name="com.tasdjilati.ui.main.enter.StudentsEnterFragment"
+        android:label="fragment_students_enter"
+        tools:layout="@layout/fragment_students_enter" />
+    <fragment
+        android:id="@+id/studentsExitFragment"
+        android:name="com.tasdjilati.ui.main.exit.StudentsExitFragment"
+        android:label="fragment_students_exit"
+        tools:layout="@layout/fragment_students_exit" />
+    <fragment
+        android:id="@+id/studentsListFragment"
+        android:name="com.tasdjilati.ui.main.students.StudentsListFragment"
+        android:label="fragment_students_list"
+        tools:layout="@layout/fragment_students_list" >
+        <action
+            android:id="@+id/action_studentsListFragment_to_addNewStudentFragment"
+            app:destination="@id/addNewStudentFragment" />
+        <action
+            android:id="@+id/action_studentsListFragment_to_viewStudentFragment"
+            app:destination="@id/viewStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewStudentFragment"
+        android:name="com.tasdjilati.ui.main.students.AddNewStudentFragment"
+        android:label="fragment_add_new_student"
+        tools:layout="@layout/fragment_add_new_student" />
+    <fragment
+        android:id="@+id/viewStudentFragment"
+        android:name="com.tasdjilati.ui.main.student.ViewStudentFragment"
+        android:label="fragment_view_student"
+        tools:layout="@layout/fragment_view_student" />
+</navigation>
