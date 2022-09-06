@@ -11,13 +11,19 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.tasdjilati.R
+import com.tasdjilati.databinding.ActivityEnterAttendanceBinding
+import com.tasdjilati.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityMainBinding
     private val REQUEST_CODE: Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
             != PackageManager.PERMISSION_GRANTED) {
@@ -33,5 +39,9 @@ class MainActivity : AppCompatActivity() {
 
         else {
         }
+
+        val navHost = findNavController(R.id.fragmentContainerView)
+        binding.mainBottomNav.setupWithNavController(navHost)
+
     }
 }

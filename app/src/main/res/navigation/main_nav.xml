@@ -9,30 +9,29 @@
         android:id="@+id/homeFragment"
         android:name="com.tasdjilati.ui.main.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_studentsListFragment"
             app:destination="@id/studentsListFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_studentsEnterFragment"
-            app:destination="@id/studentsEnterFragment" />
+            android:id="@+id/action_homeFragment_to_QRScannerFragment"
+            app:destination="@id/QRScannerFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_studentsExitFragment"
-            app:destination="@id/studentsExitFragment" />
+            android:id="@+id/action_homeFragment_to_convocationFragment"
+            app:destination="@id/convocationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_subscriptionFragment"
+            app:destination="@id/subscriptionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventsFragment"
+            app:destination="@id/eventsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_canteenMenuFragment"
+            app:destination="@id/canteenMenuFragment" />
     </fragment>
     <fragment
-        android:id="@+id/studentsEnterFragment"
-        android:name="com.tasdjilati.ui.main.enter.StudentsEnterFragment"
-        android:label="fragment_students_enter"
-        tools:layout="@layout/fragment_students_enter" />
-    <fragment
-        android:id="@+id/studentsExitFragment"
-        android:name="com.tasdjilati.ui.main.exit.StudentsExitFragment"
-        android:label="fragment_students_exit"
-        tools:layout="@layout/fragment_students_exit" />
-    <fragment
         android:id="@+id/studentsListFragment"
-        android:name="com.tasdjilati.ui.main.students.StudentsListFragment"
+        android:name="com.tasdjilati.ui.main.students_list.StudentsListFragment"
         android:label="fragment_students_list"
         tools:layout="@layout/fragment_students_list" >
         <action
@@ -44,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewStudentFragment"
-        android:name="com.tasdjilati.ui.main.students.AddNewStudentFragment"
+        android:name="com.tasdjilati.ui.main.students_list.AddNewStudentFragment"
         android:label="fragment_add_new_student"
         tools:layout="@layout/fragment_add_new_student" />
     <fragment
@@ -52,4 +51,43 @@
         android:name="com.tasdjilati.ui.main.student.ViewStudentFragment"
         android:label="fragment_view_student"
         tools:layout="@layout/fragment_view_student" />
+    <fragment
+        android:id="@+id/QRScannerFragment"
+        android:name="com.tasdjilati.ui.main.scanner.QRScannerEnterFragment"
+        android:label="fragment_q_r_scanner"
+        tools:layout="@layout/fragment_q_r_scanner_enter" />
+    <fragment
+        android:id="@+id/homeQRScannerFragment"
+        android:name="com.tasdjilati.ui.main.scanner.HomeQRScannerFragment"
+        android:label="fragment_home_q_r_scanner"
+        tools:layout="@layout/fragment_home_q_r_scanner" />
+    <fragment
+        android:id="@+id/convocationFragment"
+        android:name="com.tasdjilati.ui.main.convocation.ConvocationFragment"
+        android:label="fragment_convocation"
+        tools:layout="@layout/fragment_convocation" />
+    <fragment
+        android:id="@+id/subscriptionFragment"
+        android:name="com.tasdjilati.ui.main.subscription.SubscriptionFragment"
+        android:label="fragment_subscription"
+        tools:layout="@layout/fragment_subscription" />
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.tasdjilati.ui.main.events.EventsFragment"
+        android:label="fragment_events"
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_eventsFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/canteenMenuFragment"
+        android:name="com.tasdjilati.ui.main.canteen.CanteenMenuFragment"
+        android:label="fragment_canteen_menu"
+        tools:layout="@layout/fragment_canteen_menu" />
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.tasdjilati.ui.main.event.EventFragment"
+        android:label="fragment_event"
+        tools:layout="@layout/fragment_event" />
 </navigation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/enter_attendance_nav"
+    app:startDestination="@id/QRScannerEnterFragment">
+
+    <fragment
+        android:id="@+id/studentsEnterFragment2"
+        android:name="com.tasdjilati.ui.main.enter.StudentsEnterFragment"
+        android:label="fragment_students_enter"
+        tools:layout="@layout/fragment_students_enter" />
+    <fragment
+        android:id="@+id/QRScannerEnterFragment"
+        android:name="com.tasdjilati.ui.main.scanner.QRScannerEnterFragment"
+        android:label="fragment_q_r_scanner_enter"
+        tools:layout="@layout/fragment_q_r_scanner_enter" />
+</navigation>

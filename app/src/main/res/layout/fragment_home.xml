@@ -148,7 +148,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_schedules"
+                android:id="@+id/card_students_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="100dp"
@@ -179,7 +179,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_exit"
+                android:id="@+id/card_students_subscriptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="100dp"
@@ -209,7 +209,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_convocations"
+                android:id="@+id/card_students_events"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="100dp"
@@ -239,7 +239,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_exit1"
+                android:id="@+id/card_students_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="100dp"
@@ -269,7 +269,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_convocations2"
+                android:id="@+id/card_students_convocations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="100dp"

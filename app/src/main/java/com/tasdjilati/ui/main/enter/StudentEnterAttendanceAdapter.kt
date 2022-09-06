@@ -1,40 +1,38 @@
-package com.tasdjilati.ui.main.students
+package com.tasdjilati.ui.main.enter
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.LiveData
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.tasdjilati.R
-import com.tasdjilati.data.entities.Student
+import com.tasdjilati.data.entities.StudentEnterAttendance
 
-class StudentAdapter(
-    private val studentsList: List<Student>
+class StudentEnterAttendanceAdapter (
+    private val studentsList: List<StudentEnterAttendance>
 )
-    : RecyclerView.Adapter<StudentAdapter.ItemViewHolder>() {
+    : RecyclerView.Adapter<StudentEnterAttendanceAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvName: TextView = view.findViewById(R.id.tv_name)
+        var doneImage : ImageView = view.findViewById(R.id.iv_done)
+        var errorImage : ImageView = view.findViewById(R.id.iv_error)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.student_rv_item, parent, false)
+            .inflate(R.layout.student_attendance_rv_item, parent, false)
         return ItemViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.tvName.text = studentsList[position].name + " " + studentsList[position].surname
-
-        holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putSerializable("student" , studentsList[position])
-            Navigation.findNavController(holder.itemView).navigate(R.id.action_studentsListFragment_to_viewStudentFragment , bundle)
+        if (studentsList[position].attendance == 1){
+            holder.errorImage.visibility = View.GONE
+            holder.doneImage.visibility = View.VISIBLE
         }
-        }
+    }
 
     override fun getItemCount()= studentsList.size
 

@@ -17,4 +17,11 @@ interface StudentEnterAttendanceDao {
 
     @Query("DELETE FROM enter_attendance_table")
     suspend fun deleteAttendanceTable()
+
+    @Query("UPDATE enter_attendance_table SET attendance = :attendance WHERE id= :id")
+    suspend fun updateStudentAttendance(attendance : Int , id : Int)
+
+    @Query("SELECT * FROM enter_attendance_table WHERE id= :id")
+    fun getStudentById(id: Int) : StudentEnterAttendance
+
 }

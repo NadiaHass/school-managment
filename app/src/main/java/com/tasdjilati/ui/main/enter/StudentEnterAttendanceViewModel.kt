@@ -30,6 +30,16 @@ class StudentEnterAttendanceViewModel (application: Application) : AndroidViewMo
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAttendanceTable()
         }
-
     }
+
+    fun updateStudentAttendance(attendance : Int, id : Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateStudentAttendance(attendance , id)
+        }
+    }
+
+    fun getStudentById(id: Int) : StudentEnterAttendance{
+       return repository.getStudentById(id)
+    }
+
 }

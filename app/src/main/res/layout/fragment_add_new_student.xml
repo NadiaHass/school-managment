@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.students.AddNewStudentFragment">
+    tools:context=".ui.main.students_list.AddNewStudentFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -178,7 +178,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Ajouter reclamation"
+                android:text="Ajouter un élève"
                 android:background="@drawable/button_blue_shape"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

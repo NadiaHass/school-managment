@@ -11,4 +11,8 @@ class StudentRepository(private val studentDao : StudentDao) {
     suspend fun addStudent(student : Student){
         studentDao.addStudent(student)
     }
+
+    fun getStudentById(id: Int) : Student {
+        return studentDao.getStudentById(id)
+    }
 }

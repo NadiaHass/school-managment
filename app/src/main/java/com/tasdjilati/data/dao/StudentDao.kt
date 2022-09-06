@@ -15,4 +15,8 @@ interface StudentDao {
     @Query("SELECT * FROM student_table ORDER BY name ASC")
     fun getAllStudents() : LiveData<List<Student>>
 
+    @Query("SELECT * FROM student_table WHERE id= :id")
+    fun getStudentById(id: Int) : Student
+
+
 }

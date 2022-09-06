@@ -2,6 +2,7 @@ package com.tasdjilati.repositories
 
 import androidx.lifecycle.LiveData
 import com.tasdjilati.data.dao.StudentExitAttendanceDao
+import com.tasdjilati.data.entities.StudentEnterAttendance
 import com.tasdjilati.data.entities.StudentExitAttendance
 
 class StudentExitAttendanceRepository (private val studentExitAttendanceDao : StudentExitAttendanceDao) {
@@ -14,5 +15,13 @@ class StudentExitAttendanceRepository (private val studentExitAttendanceDao : St
 
     suspend fun deleteAttendanceTable(){
         studentExitAttendanceDao.deleteAttendanceTable()
+    }
+
+    suspend fun updateStudentAttendance(attendance : Int , id : Int){
+        studentExitAttendanceDao.updateStudentAttendance(attendance , id)
+    }
+
+    fun getStudentById(id: Int) : StudentExitAttendance {
+        return studentExitAttendanceDao.getStudentById(id)
     }
 }

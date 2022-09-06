@@ -1,4 +1,4 @@
-package com.tasdjilati.ui.main.enter
+package com.tasdjilati.ui.main.exit
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tasdjilati.R
 import com.tasdjilati.data.entities.StudentEnterAttendance
+import com.tasdjilati.data.entities.StudentExitAttendance
 
-class StudentAttendanceAdapter (
-    private val studentsList: List<StudentEnterAttendance>
+class StudentExitAttendanceAdapter  (
+    private val studentsList: List<StudentExitAttendance>
 )
-    : RecyclerView.Adapter<StudentAttendanceAdapter.ItemViewHolder>() {
+    : RecyclerView.Adapter<StudentExitAttendanceAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvName: TextView = view.findViewById(R.id.tv_name)

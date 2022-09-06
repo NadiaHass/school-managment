@@ -1,4 +1,4 @@
-package com.tasdjilati.ui.main.students
+package com.tasdjilati.ui.main.students_list
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -24,5 +24,9 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch(Dispatchers.IO) {
             repository.addStudent(student)
         }
+    }
+
+    fun getStudentById(id: Int) : Student {
+        return repository.getStudentById(id)
     }
 }

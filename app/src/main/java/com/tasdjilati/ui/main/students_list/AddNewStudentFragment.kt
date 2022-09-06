@@ -1,4 +1,4 @@
-package com.tasdjilati.ui.main.students
+package com.tasdjilati.ui.main.students_list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

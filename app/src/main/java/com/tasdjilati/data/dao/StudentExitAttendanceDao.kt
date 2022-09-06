@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.tasdjilati.data.entities.StudentEnterAttendance
 import com.tasdjilati.data.entities.StudentExitAttendance
 
 @Dao
@@ -17,4 +18,11 @@ interface StudentExitAttendanceDao {
 
     @Query("DELETE FROM exit_attendance_table")
     suspend fun deleteAttendanceTable()
+
+    @Query("UPDATE exit_attendance_table SET attendance = :attendance WHERE id= :id")
+    suspend fun updateStudentAttendance(attendance : Int , id : Int)
+
+    @Query("SELECT * FROM exit_attendance_table WHERE id= :id")
+    fun getStudentById(id: Int) : StudentExitAttendance
+
 }
