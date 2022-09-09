@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.students_list.StudentsListFragment">
 
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:queryHint="Cherchez..."
+        android:background="@drawable/custom_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_student"
@@ -23,6 +34,20 @@
         android:id="@+id/rv_students"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_view" />
+
+    <ImageView
+        android:id="@+id/iv_empty"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ic_error"
+        android:tint="@color/gray"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

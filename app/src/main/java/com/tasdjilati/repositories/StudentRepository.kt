@@ -12,7 +12,20 @@ class StudentRepository(private val studentDao : StudentDao) {
         studentDao.addStudent(student)
     }
 
+    suspend fun deleteStudent(student : Student){
+        studentDao.deleteStudent(student)
+    }
+
+    suspend fun updateStudent(student : Student){
+        studentDao.updateStudent(student)
+    }
+
     fun getStudentById(id: Int) : Student {
         return studentDao.getStudentById(id)
     }
+
+    fun searchDatabase(searchQuery : String) : LiveData<List<Student>>{
+        return studentDao.searchDatabase(searchQuery)
+    }
+
 }

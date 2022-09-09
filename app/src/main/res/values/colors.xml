@@ -10,7 +10,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0C71E0</color>
-    <color name="blue_light">#5CA6F8</color>
+    <color name="blue_light">#E7EFFF</color>
     <color name="gray">#C1C7C9</color>
 
 </resources>

@@ -26,7 +26,23 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun deleteStudent(student: Student){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteStudent(student)
+        }
+    }
+
+    fun updateStudent(student : Student){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateStudent(student)
+        }
+    }
+
     fun getStudentById(id: Int) : Student {
         return repository.getStudentById(id)
+    }
+
+    fun searchDatabase(searchQuery : String) : LiveData<List<Student>>{
+        return repository.searchDatabase(searchQuery)
     }
 }

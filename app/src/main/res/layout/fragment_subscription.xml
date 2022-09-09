@@ -6,42 +6,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.subscription.SubscriptionFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Envoyer un rappel d'abonnement"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/et_message"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:gravity="top"
         android:hint="Contenu de message"
         android:inputType="textMultiLine"
-        android:layout_marginTop="48dp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="18sp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send_message"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="Envoyer le message"
         android:background="@drawable/button_blue_shape"
         android:textAllCaps="false"

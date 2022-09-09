@@ -13,7 +13,6 @@ import com.tasdjilati.R
 import com.tasdjilati.databinding.FragmentHomeBinding
 import com.tasdjilati.ui.main.enter.EnterAttendanceActivity
 import com.tasdjilati.ui.main.exit.ExitAttendanceActivity
-import com.tasdjilati.ui.settings.SettingsActivity
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
@@ -30,7 +29,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.ivSettings.setOnClickListener {
-            openSettingsActivity()
+            openSettingsFragment()
         }
 
         binding.cardStudentsEnter.setOnClickListener {
@@ -56,6 +55,7 @@ class HomeFragment : Fragment() {
         binding.cardStudentsSubscriptions.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_subscriptionFragment)
         }
+
         return binding.root
     }
 
@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
         super.onResume()
         showBottomNav()
     }
+
     private fun showBottomNav() {
         try{
             val bottomNav = activity?.findViewById<BottomNavigationView>(R.id.main_bottom_nav)
@@ -76,7 +77,8 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_studentsListFragment)
     }
 
-    private fun openSettingsActivity() {
-        startActivity(Intent(activity , SettingsActivity::class.java))
+    private fun openSettingsFragment() {
+        Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_settingFragment)
+
     }
 }

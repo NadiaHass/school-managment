@@ -6,27 +6,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.exit.StudentsExitFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_terminate"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        app:strokeColor="@color/blue"
         android:text="Terminer"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:layout_marginTop="8dp"
+        app:cornerRadius="15dp"
+        android:textColor="@color/blue"
+        android:layout_marginTop="16dp"
+        app:icon="@drawable/ic_done"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_cancel"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Annuler"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        android:layout_marginTop="8dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/blue"
+        android:textColor="@color/blue"
+        app:cornerRadius="15dp"
+        app:icon="@drawable/ic_error"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@id/btn_terminate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

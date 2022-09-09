@@ -1,22 +1,26 @@
 package com.tasdjilati.data
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.tasdjilati.data.converters.Converter
+import com.tasdjilati.data.dao.SplashImageDao
 import com.tasdjilati.data.dao.StudentDao
 import com.tasdjilati.data.dao.StudentEnterAttendanceDao
 import com.tasdjilati.data.dao.StudentExitAttendanceDao
+import com.tasdjilati.data.entities.SplashImage
 import com.tasdjilati.data.entities.Student
 import com.tasdjilati.data.entities.StudentEnterAttendance
 import com.tasdjilati.data.entities.StudentExitAttendance
 
-@Database(entities = [Student::class , StudentEnterAttendance::class , StudentExitAttendance::class], version = 1, exportSchema = false)
+@Database(entities = [Student::class , StudentEnterAttendance::class , StudentExitAttendance::class , SplashImage::class], version = 1, exportSchema = false)
+@TypeConverters(Converter::class)
+
 abstract class StudentsDatabase : RoomDatabase(){
 
     abstract fun getStudentDao(): StudentDao
     abstract fun getStudentEnterAttendanceDao(): StudentEnterAttendanceDao
     abstract fun getStudentExitAttendanceDao(): StudentExitAttendanceDao
+    abstract fun getImageDao(): SplashImageDao
 
     companion object {
         @Volatile
@@ -27,7 +31,7 @@ abstract class StudentsDatabase : RoomDatabase(){
                     val instance = Room.databaseBuilder(
                         context.applicationContext,
                         StudentsDatabase::class.java,
-                        "studentDatabase"
+                        "database"
                     ).build()
                     INSTANCE = instance
                     instance

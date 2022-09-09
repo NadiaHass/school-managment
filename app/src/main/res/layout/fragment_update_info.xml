@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.UpdateInfoFragment">
+
+    <ImageView
+        android:id="@+id/iv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_a_photo"
+        android:tint="@color/blue"
+        android:padding="8dp"
+        android:layout_marginStart="64dp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_image"
+        app:layout_constraintStart_toStartOf="@+id/iv_image"
+        app:layout_constraintTop_toBottomOf="@+id/iv_image" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="100dp" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Nom de l'ecole"
+        android:inputType="text"
+        android:layout_marginTop="32dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="18sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_add"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_update"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_blue_shape"
+        android:text="Modifier les infos"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

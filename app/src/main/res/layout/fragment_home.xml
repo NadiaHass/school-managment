@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_settings"
-        android:padding="8dp"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome"
         android:textColor="@color/black"
-        android:padding="8dp"
+        android:padding="16dp"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -141,6 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:text="Entrée"/>
@@ -171,6 +172,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:text="Sortie"/>
@@ -201,6 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:text="Abonnements"/>
@@ -231,6 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:text="Evenements"/>
@@ -262,6 +266,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:textColor="@color/black"
+                        android:layout_gravity="center"
                         android:textSize="20sp"
                         android:text="La cantine"/>
                 </LinearLayout>
@@ -292,6 +297,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:textColor="@color/black"
+                        android:layout_gravity="center"
                         android:textSize="20sp"
                         android:text="Convocations"/>
                 </LinearLayout>

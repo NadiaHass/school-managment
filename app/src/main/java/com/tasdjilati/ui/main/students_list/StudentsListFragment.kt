@@ -9,6 +9,7 @@ import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.os.Environment
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
@@ -43,14 +44,44 @@ class StudentsListFragment : Fragment() {
             binding.rvStudents.adapter = StudentAdapter(it)
             studentsList = it
 
+            if(it.isEmpty()){
+                binding.ivEmpty.visibility = View.VISIBLE
+            }else{
+                binding.ivEmpty.visibility = View.GONE
+            }
             })
 
         binding.fabAddStudent.setOnClickListener {
-            generateQrCodesPdf(studentsList)
+//            generateQrCodesPdf(studentsList)
             Navigation.findNavController(binding.root).navigate(R.id.action_studentsListFragment_to_addNewStudentFragment)
         }
 
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query != null){
+                    searchDatabase(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null){
+                    searchDatabase(query)
+                }
+                return true
+            }
+
+        })
+
         return binding.root
+    }
+
+    private fun searchDatabase(query : String){
+        val searchQuery = "%$query%"
+        studentViewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner , {
+            binding.rvStudents.adapter = StudentAdapter(it)
+        })
     }
 
     private fun hideBottomNav() {
@@ -81,7 +112,6 @@ class StudentsListFragment : Fragment() {
             canvas.drawBitmap(bitmap, x, y, paint) // float left = x, float top = y
             pdfDocument.finishPage(page)
         }
-        // save pdf file in Mobile Phone Storage
         val myFilePath = Environment.getExternalStorageDirectory().path + "/listeQrCode.pdf"
         val myFile = File(myFilePath)
         try {
@@ -113,4 +143,6 @@ class StudentsListFragment : Fragment() {
             e.printStackTrace()
         }
     }
+
+
 }

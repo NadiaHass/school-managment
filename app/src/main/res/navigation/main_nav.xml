@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_canteenMenuFragment"
             app:destination="@id/canteenMenuFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentsListFragment"
@@ -90,4 +93,18 @@
         android:name="com.tasdjilati.ui.main.event.EventFragment"
         android:label="fragment_event"
         tools:layout="@layout/fragment_event" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.tasdjilati.ui.settings.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_UpdateInfoFragment"
+            app:destination="@id/UpdateInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/UpdateInfoFragment"
+        android:name="com.tasdjilati.ui.settings.UpdateInfoFragment"
+        android:label="update_info_setting"
+        tools:layout="@layout/fragment_update_info" />
 </navigation>

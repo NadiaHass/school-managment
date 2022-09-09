@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -24,7 +25,6 @@
             android:enabled="true"/>
         <activity android:name=".ui.main.exit.ExitAttendanceActivity"></activity>
         <activity android:name=".ui.main.enter.EnterAttendanceActivity" />
-        <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.splash.SplashActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
