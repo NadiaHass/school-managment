@@ -30,7 +30,7 @@ class EventFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentSubscriptionBinding.inflate(inflater, container, false)
 
         studentViewModel = ViewModelProvider(this)[StudentViewModel::class.java]
@@ -39,11 +39,12 @@ class EventFragment : Fragment() {
             studentsList = it
         })
 
-        arguments?.getString("message" , "")
-        arguments?.getString("title" , "")
+        val message = arguments?.getString("message" , "")
 
+        binding.etMessage.setText(message)
         binding.btnSendMessage.setOnClickListener {
             sendMessages()
+            Toast.makeText(requireActivity(), "Les sms on ete envoyee", Toast.LENGTH_LONG).show()
         }
 
         return binding.root
@@ -72,8 +73,8 @@ class EventFragment : Fragment() {
         if (checkSmsPermission()){
             try {
                 val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                SmsManager.getDefault().sendTextMessage(student.numParent1, null, "message Parent 1", sentPI, null)
-                SmsManager.getDefault().sendTextMessage(student.numParent2, null, "message Parent 2", sentPI, null)
+                SmsManager.getDefault().sendTextMessage(student.numParent1, null, binding.etMessage.text.toString(), sentPI, null)
+                SmsManager.getDefault().sendTextMessage(student.numParent2, null, binding.etMessage.text.toString(), sentPI, null)
             }catch (e : java.lang.Exception){
 
             }

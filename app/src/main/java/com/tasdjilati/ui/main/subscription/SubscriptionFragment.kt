@@ -46,12 +46,14 @@ class SubscriptionFragment : Fragment() {
 
         studentViewModel = ViewModelProvider(this)[StudentViewModel::class.java]
 
+        binding.etMessage.setText("Un message .........................")
         studentViewModel.getAllStudents.observe(viewLifecycleOwner , {
             studentsList = it
         })
 
         binding.btnSendMessage.setOnClickListener {
             sendMessages()
+            Toast.makeText(requireActivity(), "Les sms on ete envoyee", Toast.LENGTH_LONG).show()
             showReminderDialog()
         }
 
@@ -92,8 +94,8 @@ class SubscriptionFragment : Fragment() {
         if (checkSmsPermission()){
             try {
                 val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                SmsManager.getDefault().sendTextMessage(student.numParent1, null, "message Parent 1", sentPI, null)
-                SmsManager.getDefault().sendTextMessage(student.numParent2, null, "message Parent 2", sentPI, null)
+                SmsManager.getDefault().sendTextMessage(student.numParent1, null, binding.etMessage.text.toString(), sentPI, null)
+                SmsManager.getDefault().sendTextMessage(student.numParent2, null, binding.etMessage.text.toString(), sentPI, null)
             }catch (e : java.lang.Exception){
 
             }
@@ -153,6 +155,8 @@ class SubscriptionFragment : Fragment() {
             timeInMillis ,
             pendingIntent
         )
+        Toast.makeText(requireActivity(), "Rappel a ete definit", Toast.LENGTH_LONG).show()
+
     }
 
 

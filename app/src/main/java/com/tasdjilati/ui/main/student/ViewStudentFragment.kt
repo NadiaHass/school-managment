@@ -1,8 +1,6 @@
  package com.tasdjilati.ui.main.student
 
-import android.Manifest
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.app.PendingIntent
 import android.content.Context.WINDOW_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -18,7 +16,6 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
-import android.telephony.SmsManager
 import android.view.*
 import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
@@ -53,27 +50,22 @@ import java.io.FileOutputStream
         generateQrCode(student.id.toString())
 
         binding.btnCall.setOnClickListener {
-
+            val intent1 = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + student.numParent1))
+            startActivity(intent1)
         }
 
         binding.btnMessage.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(activity!!,
-                        Array<String>(1){"Manifest.permission.SEND_SMS"},
-                        REQUEST_CODE)
-            }else {
-                try{
-                    sendSMS(student.numParent1 , "hi")
-                }catch (e : Exception){
-                    Toast.makeText(requireContext() , e.message , Toast.LENGTH_LONG).show()
-                }
-            }
+            val smsIntent = Intent(Intent.ACTION_SENDTO)
+            smsIntent.addCategory(Intent.CATEGORY_DEFAULT)
+            smsIntent.type = "vnd.android-dir/mms-sms"
+            smsIntent.data = Uri.parse("sms:" + student.numParent1)
+            startActivity(smsIntent)
         }
 
         binding.btnSave.setOnClickListener {
+            val name = student.name + "_" + student.surname
             if (checkPermission())
-               createMyPDFofQRCode()
+            createMyPDFofQRCode(name)
             else
                 requestPermission()
         }
@@ -81,7 +73,7 @@ import java.io.FileOutputStream
         return binding.root
     }
 
-     private fun createMyPDFofQRCode() {
+     private fun createMyPDFofQRCode(name: String) {
                      val pdfDocument = PdfDocument()
                      val pi = PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
                      val page = pdfDocument.startPage(pi)
@@ -94,8 +86,8 @@ import java.io.FileOutputStream
 
                      // save pdf file in Mobile Phone Storage
                      val myFilePath =
-                         Environment.getExternalStorageDirectory().path + "/myPDFFile.pdf"
-                     val myFile = File(myFilePath)
+                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/$name.pdf").path
+                         val myFile = File(myFilePath)
                      try {
                          pdfDocument.writeTo(FileOutputStream(myFile))
                          Toast.makeText(requireContext(),
@@ -106,11 +98,6 @@ import java.io.FileOutputStream
                      }
                      pdfDocument.close()
                  }
-
-     private fun sendSMS(phoneNumber: String, message: String) {
-         val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-         SmsManager.getDefault().sendTextMessage(phoneNumber, null, message, sentPI, null)
-     }
 
      private fun displayData(student: Student) {
          binding.tvId.text = "Id: " + student.id.toString()

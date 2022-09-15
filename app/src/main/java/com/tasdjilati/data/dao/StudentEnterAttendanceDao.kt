@@ -24,4 +24,7 @@ interface StudentEnterAttendanceDao {
     @Query("SELECT * FROM enter_attendance_table WHERE id= :id")
     fun getStudentById(id: Int) : StudentEnterAttendance
 
+    @Query("SELECT EXISTS(SELECT * FROM student_table WHERE id= :id)")
+    fun isRowExists(id : Int) : Boolean
+
 }

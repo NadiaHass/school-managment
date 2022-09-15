@@ -40,13 +40,13 @@ class HomeFragment : Fragment() {
             startActivity(Intent(activity , ExitAttendanceActivity::class.java))
         }
 
-       binding.cardStudentsConvocations.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_convocationFragment)
-        }
-
-        binding.cardStudentsRestaurant.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_canteenMenuFragment)
-        }
+//       binding.cardStudentsConvocations.setOnClickListener {
+//            Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_convocationFragment)
+//        }
+//
+//        binding.cardStudentsRestaurant.setOnClickListener {
+//            Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_canteenMenuFragment)
+//        }
 
         binding.cardStudentsEvents.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_eventsFragment)

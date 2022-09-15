@@ -73,14 +73,14 @@
                     <TextView
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:text="Gérer vos élèves"
+                        android:text="@string/manage_students"
                         android:textColor="@color/white"
                         android:textSize="24sp"/>
 
                     <TextView
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:text="Vous pouvez ajouter, supprimer et modifier vos élèves."
+                        android:text="@string/desc_manage_students"
                         android:textColor="@color/white"
                         android:textSize="16sp"/>
 
@@ -144,7 +144,7 @@
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        android:text="Entrée"/>
+                        android:text="@string/enter"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -175,7 +175,7 @@
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        android:text="Sortie"/>
+                        android:text="@string/exit"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -206,7 +206,7 @@
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        android:text="Abonnements"/>
+                        android:text="@string/subscription"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -237,71 +237,71 @@
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        android:text="Evenements"/>
+                        android:text="@string/events"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_restaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="100dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="10dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:padding="16dp"
-                    android:orientation="vertical">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/card_students_restaurant"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:elevation="100dp"-->
+<!--                android:layout_margin="16dp"-->
+<!--                app:cardCornerRadius="10dp">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:orientation="vertical">-->
 
-                    <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="100dp"
-                        android:padding="8dp"
-                        android:src="@drawable/restaurant"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:textSize="20sp"
-                        android:text="La cantine"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                    <ImageView-->
+<!--                        android:layout_width="120dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:src="@drawable/restaurant"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:text="@string/restaurant"/>-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_students_convocations"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="100dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="10dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:padding="16dp"
-                    android:orientation="vertical">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/card_students_convocations"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:elevation="100dp"-->
+<!--                android:layout_margin="16dp"-->
+<!--                app:cardCornerRadius="10dp">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:orientation="vertical">-->
 
-                    <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="100dp"
-                        android:padding="8dp"
-                        android:src="@drawable/report"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:textSize="20sp"
-                        android:text="Convocations"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                    <ImageView-->
+<!--                        android:layout_width="120dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:src="@drawable/report"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:text="@string/convocations"/>-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
         </GridLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,12 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO"/>
+            <data android:scheme="smsto"/>
+        </intent>
+    </queries>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,13 +31,15 @@
             android:enabled="true"/>
         <activity android:name=".ui.main.exit.ExitAttendanceActivity"></activity>
         <activity android:name=".ui.main.enter.EnterAttendanceActivity" />
-        <activity android:name=".ui.splash.SplashActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.splash.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.main.MainActivity">
+
         </activity>
     </application>
 

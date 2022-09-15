@@ -23,4 +23,7 @@ class StudentEnterAttendanceRepository (private val studentEnterAttendanceDao : 
         return studentEnterAttendanceDao.getStudentById(id)
     }
 
+    fun isRowExists(id : Int) : Boolean{
+        return studentEnterAttendanceDao.isRowExists(id)
+    }
 }

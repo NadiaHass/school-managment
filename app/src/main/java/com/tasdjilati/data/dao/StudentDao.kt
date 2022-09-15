@@ -23,4 +23,7 @@ interface StudentDao {
 
     @Query("SELECT * FROM student_table WHERE name LIKE :searchQuery OR surname LIKE :searchQuery ")
     fun searchDatabase(searchQuery : String) : LiveData<List<Student>>
+
+    @Query("SELECT EXISTS(SELECT * FROM student_table WHERE id= :id)")
+    fun isRowExists(id : Int) : Boolean
 }

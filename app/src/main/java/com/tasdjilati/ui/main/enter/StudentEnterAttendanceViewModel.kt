@@ -42,4 +42,7 @@ class StudentEnterAttendanceViewModel (application: Application) : AndroidViewMo
        return repository.getStudentById(id)
     }
 
+    fun isRowExists(id : Int) : Boolean{
+        return repository.isRowExists(id)
+    }
 }

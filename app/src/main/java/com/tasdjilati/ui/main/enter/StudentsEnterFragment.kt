@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tasdjilati.data.entities.Student
 import com.tasdjilati.data.entities.StudentEnterAttendance
 import com.tasdjilati.databinding.FragmentStudentsEnterBinding
 import com.tasdjilati.ui.main.students_list.StudentViewModel
@@ -64,21 +65,21 @@ class StudentsEnterFragment : Fragment() {
 
     private fun sendSmsToAbsents() {
         for (student in studentsList!!){
-            if (student.attendance == 1)
-                sendSMS(student.id)
+            if (student.attendance == 0)
+                sendSMS(student , "Votre enfant est absent")
         }
     }
 
-    private fun sendSMS(id: Int) {
+    private fun sendSMS(student : StudentEnterAttendance, message : String) {
         if (checkSmsPermission()){
                 try {
                     val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                    SmsManager.getDefault().sendTextMessage("number1", null, "message Parent 1", sentPI, null)
-                    SmsManager.getDefault().sendTextMessage("number2", null, "message Parent 2", sentPI, null)
+                    SmsManager.getDefault().sendTextMessage(student.numParent1, null, message, sentPI, null)
+                    SmsManager.getDefault().sendTextMessage(student.numParent2, null, message, sentPI, null)
                 }catch (e : Exception){
 
                 }
-        }
+            }
     }
 
     private fun checkSmsPermission() : Boolean{

@@ -25,4 +25,6 @@ interface StudentExitAttendanceDao {
     @Query("SELECT * FROM exit_attendance_table WHERE id= :id")
     fun getStudentById(id: Int) : StudentExitAttendance
 
+    @Query("SELECT EXISTS(SELECT * FROM student_table WHERE id= :id)")
+    fun isRowExists(id : Int) : Boolean
 }

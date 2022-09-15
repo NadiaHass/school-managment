@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Examens"
+                    android:text="@string/exams"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Devoirs"
+                    android:text="@string/tests"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Excursions"
+                    android:text="@string/trips"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Vacances"
+                    android:text="@string/holidays"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Inscriptions"
+                    android:text="@string/registrations"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -205,7 +205,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Autre"
+                    android:text="@string/other"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>

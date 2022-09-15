@@ -42,4 +42,8 @@ class StudentExitAttendanceViewModel (application: Application) : AndroidViewMod
     fun getStudentById(id: Int) : StudentExitAttendance {
         return repository.getStudentById(id)
     }
+
+    fun isRowExists(id : Int) : Boolean{
+        return repository.isRowExists(id)
+    }
 }

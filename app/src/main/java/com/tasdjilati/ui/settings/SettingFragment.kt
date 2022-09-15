@@ -25,6 +25,10 @@ class SettingFragment : Fragment() {
             Navigation.findNavController(binding.root).navigate(R.id.action_settingFragment_to_UpdateInfoFragment)
         }
 
+        binding.updateLanguage.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_settingFragment_to_changeLanguageFragment)
+        }
+
         return binding.root
     }
 

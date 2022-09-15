@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تسجيلاتي</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">مرحبا</string>
+    <string name="update_school_info">تغيير معلومات المدرسة</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="parametres">اعدادات التطبيق</string>
+    <string name="add_student">اضافة تلميذ</string>
+    <string name="name">الاسم</string>
+    <string name="surname">اللقب</string>
+    <string name="birth_date">تاريخ الميلاد</string>
+    <string name="year">السنة الدراسية</string>
+    <string name="classe">القسم</string>
+    <string name="num_1">رقم الهاتف 1</string>
+    <string name="num_2">رقم الهاتف 2</string>
+    <string name="address">العنوان</string>
+    <string name="menu_de_semaine">قائمة الاسبوع</string>
+    <string name="dimanche">الاحد</string>
+    <string name="lundi">الاثنين</string>
+    <string name="mardi">الثلاثاء</string>
+    <string name="mercredi">الاربعاء</string>
+    <string name="jeudi">الخميس</string>
+    <string name="send_menu">ارسال القائمة</string>
+    <string name="chhose_language">اختر اللغة</string>
+    <string name="francais">الفرنسية</string>
+    <string name="arabe">العربية</string>
+    <string name="convocation_content">محتوى الاستدعاء</string>
+    <string name="send_message">ارسال الرسالة</string>
+    <string name="message_content">محتوى الرسالة</string>
+    <string name="exams">الاختبارات</string>
+    <string name="tests">الفروض</string>
+    <string name="trips">الرحلات</string>
+    <string name="holidays">العطل</string>
+    <string name="registrations">تسجيلات</string>
+    <string name="other">اخرى</string>
+    <string name="enter">دخول</string>
+    <string name="exit">خروج</string>
+    <string name="subscription">اشتراكات</string>
+    <string name="events">مواعيد</string>
+    <string name="restaurant">المطعم</string>
+    <string name="convocations">ستدعاء</string>
+    <string name="manage_students">تحكم بلائحة التلاميذ</string>
+    <string name="desc_manage_students">يمكنكم اضافة, تعديل وحذف التلاميذ</string>
+    <string name="terminate">انتهاء</string>
+    <string name="cancel">الغاء</string>
+    <string name="name_school">اسم المدرسة</string>
+    <string name="update_info">تعديل البيانات</string>
+    <string name="define_alarm">وضع تذكير</string>
+    <string name="remind_me">ذكرني</string>
+    <string name="label_qr_code">تحميل QR code pdf</string>
+    <string name="label_import">رفع ملف excel</string>
+
+</resources>

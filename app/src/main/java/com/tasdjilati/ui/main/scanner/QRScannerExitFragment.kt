@@ -60,13 +60,13 @@ class QRScannerExitFragment : Fragment() {
         codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
         codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
         codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = true // Whether to enable flash or not
+        codeScanner.isFlashEnabled = false // Whether to enable flash or not
         codeScanner.decodeCallback = DecodeCallback {
             activity?.runOnUiThread {
                 Toast.makeText(requireActivity(), "Id d'eleve: ${it.text}", Toast.LENGTH_LONG).show()
                 updateStudentAttendance(it.text)
             }
-            sendSMS(it.text.toInt())
+            sendSMS(it.text.toInt() , "Votre enfant est present")
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
             activity?.runOnUiThread {
@@ -76,14 +76,14 @@ class QRScannerExitFragment : Fragment() {
         }
     }
 
-    private fun sendSMS(id: Int) {
+    private fun sendSMS(id: Int , message : String) {
         val student = studentExitViewModel.getStudentById(id)
         if (checkSmsPermission()){
             if (student.attendance == 0){
                 try {
                     val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                    SmsManager.getDefault().sendTextMessage(student.numParent1, null, "message Parent 1", sentPI, null)
-                    SmsManager.getDefault().sendTextMessage(student.numParent2, null, "message Parent 2", sentPI, null)
+                    SmsManager.getDefault().sendTextMessage(student.numParent1, null, message, sentPI, null)
+                    SmsManager.getDefault().sendTextMessage(student.numParent2, null, message, sentPI, null)
                 }catch (e : Exception){
 
                 }
@@ -105,7 +105,18 @@ class QRScannerExitFragment : Fragment() {
     }
 
     private fun updateStudentAttendance(id: String) {
-        studentExitViewModel.updateStudentAttendance(1 , id.toInt())
+        try {
+//            if (studentExitViewModel.isRowExists(id.toInt())){
+//                studentExitViewModel.updateStudentAttendance(1 , id.toInt())
+//
+//            }else{
+//                Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
+//            }
+
+            studentExitViewModel.updateStudentAttendance(1 , id.toInt())
+        }catch (e : Exception){
+
+        }
     }
 
     override fun onResume() {

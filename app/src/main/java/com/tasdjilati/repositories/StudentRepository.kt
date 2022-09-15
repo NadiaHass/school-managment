@@ -28,4 +28,8 @@ class StudentRepository(private val studentDao : StudentDao) {
         return studentDao.searchDatabase(searchQuery)
     }
 
+    fun isRowExists(id : Int) : Boolean{
+        return studentDao.isRowExists(id)
+    }
+
 }

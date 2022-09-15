@@ -18,18 +18,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_student"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:backgroundTint="@color/blue"
-        android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_students"
         android:layout_width="match_parent"
@@ -52,5 +40,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:fab_labelStyle="@style/LabelStyle"
+        app:fab_addButtonColorNormal="@color/blue"
+        app:fab_addButtonColorPressed="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
+            app:fab_title="@string/add_student"
+            app:layout_anchor="@id/fab"
+            app:fab_colorNormal="@color/blue"
+            app:fab_colorPressed="@color/blue"
+            app:layout_anchorGravity="center"
+            app:fab_icon="@drawable/ic_add_person"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_import_excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
+            app:fab_title="@string/label_import"
+            app:fab_colorNormal="@color/blue"
+            app:fab_colorPressed="@color/blue"
+            app:layout_anchor="@id/fab"
+            app:layout_anchorGravity="center"
+            app:fab_icon="@drawable/ic_import"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_export_qr_pdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
+            app:fab_title="Exporter QR code pdf"
+            app:fab_colorNormal="@color/blue"
+            app:fab_colorPressed="@color/blue"
+            app:layout_anchor="@id/fab"
+            app:layout_anchorGravity="center"
+            app:fab_icon="@drawable/ic_scanner"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

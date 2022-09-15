@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/blue_light"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
-            android:text="Parametres"
-            android:textColor="@color/black"
+            android:text="@string/parametres"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -47,10 +47,10 @@
                 android:src="@drawable/ic_info"/>
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Modifier les infos de l'ecole"
+                android:text="@string/update_school_info"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
 
@@ -83,10 +83,10 @@
                 android:src="@drawable/ic_language"/>
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Modifier la langue"
+                android:text="@string/change_language"
                 android:textColor="@color/black"
                 android:textSize="18sp"/>
 

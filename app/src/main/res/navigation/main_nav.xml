@@ -101,10 +101,18 @@
         <action
             android:id="@+id/action_settingFragment_to_UpdateInfoFragment"
             app:destination="@id/UpdateInfoFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_changeLanguageFragment"
+            app:destination="@id/changeLanguageFragment" />
     </fragment>
     <fragment
         android:id="@+id/UpdateInfoFragment"
         android:name="com.tasdjilati.ui.settings.UpdateInfoFragment"
         android:label="update_info_setting"
         tools:layout="@layout/fragment_update_info" />
+    <fragment
+        android:id="@+id/changeLanguageFragment"
+        android:name="com.tasdjilati.ui.settings.ChangeLanguageFragment"
+        android:label="fragment_change_language"
+        tools:layout="@layout/fragment_change_language" />
 </navigation>

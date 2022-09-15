@@ -45,4 +45,9 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
     fun searchDatabase(searchQuery : String) : LiveData<List<Student>>{
         return repository.searchDatabase(searchQuery)
     }
+
+    fun isRowExists(id : Int) : Boolean{
+        return repository.isRowExists(id)
+    }
+
 }

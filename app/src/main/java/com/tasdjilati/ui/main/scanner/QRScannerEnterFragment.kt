@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.budiyev.android.codescanner.*
 import com.tasdjilati.databinding.FragmentQRScannerEnterBinding
 import com.tasdjilati.ui.main.enter.StudentEnterAttendanceViewModel
+import com.tasdjilati.ui.main.students_list.StudentViewModel
 import java.lang.Exception
 
 class QRScannerEnterFragment : Fragment() {
@@ -24,6 +25,7 @@ class QRScannerEnterFragment : Fragment() {
     private val CAMERA_PERMISSION_REQUEST_CODE: Int = 3
     private lateinit var codeScanner: CodeScanner
     private lateinit var studentEnterViewModel: StudentEnterAttendanceViewModel
+    private lateinit var studentViewModel: StudentViewModel
     private var _binding: FragmentQRScannerEnterBinding? = null
     private val binding get() = _binding!!
 
@@ -33,6 +35,7 @@ class QRScannerEnterFragment : Fragment() {
     ): View {
         _binding = FragmentQRScannerEnterBinding.inflate(inflater, container, false)
         studentEnterViewModel = ViewModelProvider(this)[StudentEnterAttendanceViewModel::class.java]
+        studentViewModel = ViewModelProvider(this)[StudentViewModel::class.java]
 
         checkForPermission()
 
@@ -53,13 +56,13 @@ class QRScannerEnterFragment : Fragment() {
         codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
         codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
         codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = true // Whether to enable flash or not
+        codeScanner.isFlashEnabled = false // Whether to enable flash or not
         codeScanner.decodeCallback = DecodeCallback {
             activity?.runOnUiThread {
                 Toast.makeText(requireActivity(), "Id d'eleve: ${it.text}",Toast.LENGTH_LONG).show()
                 updateStudentAttendance(it.text)
             }
-            sendSMS(it.text.toInt())
+            sendSMS(it.text.toInt() , "Votre enfant est present")
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
             activity?.runOnUiThread {
@@ -69,14 +72,14 @@ class QRScannerEnterFragment : Fragment() {
         }
     }
 
-    private fun sendSMS(id: Int) {
+    private fun sendSMS(id: Int , message : String) {
         val student = studentEnterViewModel.getStudentById(id)
         if (checkSmsPermission()){
             if (student.attendance == 0){
                 try {
                     val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                    SmsManager.getDefault().sendTextMessage(student.numParent1, null, "message Parent 1", sentPI, null)
-                    SmsManager.getDefault().sendTextMessage(student.numParent2, null, "message Parent 2", sentPI, null)
+                    SmsManager.getDefault().sendTextMessage(student.numParent1, null, message, sentPI, null)
+                    SmsManager.getDefault().sendTextMessage(student.numParent2, null, message, sentPI, null)
                 }catch (e : Exception){
 
                 }
@@ -98,7 +101,17 @@ class QRScannerEnterFragment : Fragment() {
     }
 
     private fun updateStudentAttendance(id: String) {
-        studentEnterViewModel.updateStudentAttendance(1 , id.toInt())
+        try {
+//            if(studentEnterViewModel.isRowExists(id.toInt())){
+//                studentEnterViewModel.updateStudentAttendance(1 , id.toInt())
+//            }else{
+//                Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
+//
+//            }
+            studentEnterViewModel.updateStudentAttendance(1 , id.toInt())
+
+        }catch (e : Exception){
+        }
     }
 
     override fun onResume() {
