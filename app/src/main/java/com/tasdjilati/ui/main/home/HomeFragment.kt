@@ -13,6 +13,7 @@ import com.tasdjilati.R
 import com.tasdjilati.databinding.FragmentHomeBinding
 import com.tasdjilati.ui.main.enter.EnterAttendanceActivity
 import com.tasdjilati.ui.main.exit.ExitAttendanceActivity
+import com.tasdjilati.ui.transport.TransportActivity
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
 //       binding.cardStudentsConvocations.setOnClickListener {
 //            Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_convocationFragment)
 //        }
-//
+
 //        binding.cardStudentsRestaurant.setOnClickListener {
 //            Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_canteenMenuFragment)
 //        }
@@ -55,6 +56,10 @@ class HomeFragment : Fragment() {
         binding.cardStudentsSubscriptions.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_subscriptionFragment)
         }
+
+//        binding.cardTransport.setOnClickListener {
+//            startActivity(Intent(activity , TransportActivity::class.java))
+//        }
 
         return binding.root
     }

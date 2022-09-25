@@ -51,5 +51,10 @@
     <string name="remind_me">ذكرني</string>
     <string name="label_qr_code">تحميل QR code pdf</string>
     <string name="label_import">رفع ملف excel</string>
+    <string name="start">ابدا</string>
+    <string name="destination">الوجهة</string>
+    <string name="transport">النقل</string>
+    <string name="modifier_un_eleve">تعديل تلميذ</string>
+
 
 </resources>

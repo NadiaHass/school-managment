@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.LayoutDirection
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.getbase.floatingactionbutton.FloatingActionsMenu
+import com.tasdjilati.R
 import com.tasdjilati.databinding.ActivitySplashBinding
 import com.tasdjilati.ui.main.MainActivity
 import com.tasdjilati.ui.settings.SplashImageViewModel
@@ -50,6 +54,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
+//        val fab = findViewById<FloatingActionsMenu>(R.id.fab)
         super.onStart()
         val sp = getSharedPreferences("lang_selected" , Context.MODE_PRIVATE)
         val language = sp?.getString("lang" , "fr")
@@ -58,10 +63,13 @@ class SplashActivity : AppCompatActivity() {
         val metrics = resources.displayMetrics
         val configuration = resources.configuration
         configuration.locale = Locale(language!!)
-        if (language == "ar")
+        if (language == "ar"){
             configuration.setLayoutDirection(Locale("ar"))
-        else
+//                fab.textDirection = View.LAYOUT_DIRECTION_LTR
+        }
+        else{
             configuration.setLayoutDirection(Locale("fr"))
+        }
 
         resources.updateConfiguration(configuration , metrics)
 

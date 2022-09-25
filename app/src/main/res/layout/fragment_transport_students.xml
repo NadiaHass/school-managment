@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.students_list.StudentsListFragment">
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:queryHint="Cherchez..."
+        android:background="@drawable/custom_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_delete_all"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_delete_all"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/search_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_students_transport"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_view" />
+
+    <ImageView
+        android:id="@+id/iv_empty"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ic_error"
+        android:tint="@color/gray"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:fab_labelStyle="@style/LabelStyle"
+        app:fab_addButtonColorNormal="@color/blue"
+        app:fab_addButtonColorPressed="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
+            app:fab_title="@string/add_student"
+            app:layout_anchor="@id/fab"
+            app:fab_colorNormal="@color/blue"
+            app:fab_colorPressed="@color/blue"
+            app:layout_anchorGravity="center"
+            app:fab_icon="@drawable/ic_add_person"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_import_excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
+            app:fab_title="@string/label_import"
+            app:fab_colorNormal="@color/blue"
+            app:fab_colorPressed="@color/blue"
+            app:layout_anchor="@id/fab"
+            app:layout_anchorGravity="center"
+            app:fab_icon="@drawable/ic_import"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_student_by_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
+            app:fab_title="Ajouter par qr code"
+            app:fab_colorNormal="@color/blue"
+            app:fab_colorPressed="@color/blue"
+            app:layout_anchor="@id/fab"
+            app:layout_anchorGravity="center"
+            app:fab_icon="@drawable/ic_scanner"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

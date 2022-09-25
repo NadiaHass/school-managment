@@ -2,9 +2,9 @@ package com.tasdjilati.ui.main.subscription
 
 import android.Manifest
 import android.app.*
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tasdjilati.R
 import com.tasdjilati.data.entities.Student
@@ -28,6 +29,10 @@ import com.tasdjilati.databinding.FragmentSubscriptionBinding
 import com.tasdjilati.notifications.*
 import com.tasdjilati.notifications.Notification
 import com.tasdjilati.ui.main.students_list.StudentViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,7 +51,7 @@ class SubscriptionFragment : Fragment() {
 
         studentViewModel = ViewModelProvider(this)[StudentViewModel::class.java]
 
-        binding.etMessage.setText("Un message .........................")
+        binding.etMessage.setText("Veillez régler la mensualité de l'établissement scolaire dans les brefs délais possible.")
         studentViewModel.getAllStudents.observe(viewLifecycleOwner , {
             studentsList = it
         })
@@ -71,9 +76,14 @@ class SubscriptionFragment : Fragment() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    private fun sendMessages() {
-        for (student in studentsList){
-            sendSMS(student)
+    private fun sendMessages() = lifecycleScope.launch {
+        if (checkSmsPermission()){
+            for (student in studentsList){
+                sendSMS(student.numParent1 , binding.etMessage.text.toString())
+                sendSMS(student.numParent2 , binding.etMessage.text.toString())
+
+                delay(200L)
+        }
         }
     }
 
@@ -90,16 +100,16 @@ class SubscriptionFragment : Fragment() {
         }
     }
 
-    private fun sendSMS(student: Student) {
-        if (checkSmsPermission()){
-            try {
-                val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                SmsManager.getDefault().sendTextMessage(student.numParent1, null, binding.etMessage.text.toString(), sentPI, null)
-                SmsManager.getDefault().sendTextMessage(student.numParent2, null, binding.etMessage.text.toString(), sentPI, null)
-            }catch (e : java.lang.Exception){
+    private fun sendSMS(phoneNumber : String , message : String) {
+        val SENT = "SMS_SENT"
+        val DELIVERED = "SMS_DELIVERED"
+        val sentPI = PendingIntent.getBroadcast(activity!!, 0, Intent(
+            SENT), 0)
+        val deliveredPI = PendingIntent.getBroadcast(activity!!, 0,
+            Intent(DELIVERED), 0)
+        val sms = SmsManager.getDefault()
+        sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
 
-            }
-        }
     }
 
     private fun showReminderDialog() {
@@ -137,8 +147,8 @@ class SubscriptionFragment : Fragment() {
 
     private fun scheduleNotification(timeInMillis: Long) {
         val intent = Intent(requireActivity() , Notification::class.java)
-        val title = "title"
-        val message = "message"
+        val title = "Rappel"
+        val message = "Rappel sur l'envoi d'un message d'abonnement"
         intent.putExtra(titleExtra , title)
         intent.putExtra(messageExtra , message)
 

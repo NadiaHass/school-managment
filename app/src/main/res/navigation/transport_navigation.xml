@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transport_navigation"
+    app:startDestination="@id/scannerTransportFragment">
+
+    <fragment
+        android:id="@+id/scannerTransportFragment"
+        android:name="com.tasdjilati.ui.transport.ScannerTransportFragment"
+        android:label="fragment_scanner_transport"
+        tools:layout="@layout/fragment_scanner_transport" />
+    <fragment
+        android:id="@+id/addScanTransportStudentFragment"
+        android:name="com.tasdjilati.ui.transport.AddScanTransportStudentFragment"
+        android:label="fragment_add_scan_transport_student"
+        tools:layout="@layout/fragment_add_scan_transport_student" />
+    <fragment
+        android:id="@+id/addTransportStudentFragment"
+        android:name="com.tasdjilati.ui.transport.AddTransportStudentFragment"
+        android:label="fragment_add_transport_student"
+        tools:layout="@layout/fragment_add_transport_student" />
+    <fragment
+        android:id="@+id/transportStudentsFragment"
+        android:name="com.tasdjilati.ui.transport.TransportStudentsFragment"
+        android:label="TransportStudentsFragment" >
+        <action
+            android:id="@+id/action_transportStudentsFragment_to_addTransportStudentFragment"
+            app:destination="@id/addTransportStudentFragment" />
+        <action
+            android:id="@+id/action_transportStudentsFragment_to_addScanTransportStudentFragment"
+            app:destination="@id/addScanTransportStudentFragment" />
+        <action
+            android:id="@+id/action_transportStudentsFragment_to_showTransportStudentFragment"
+            app:destination="@id/showTransportStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showTransportStudentFragment"
+        android:name="com.tasdjilati.ui.transport.ShowTransportStudentFragment"
+        android:label="ShowTransportStudentFragment" />
+</navigation>

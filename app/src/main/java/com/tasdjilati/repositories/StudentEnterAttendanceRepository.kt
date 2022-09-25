@@ -6,7 +6,7 @@ import com.tasdjilati.data.entities.StudentEnterAttendance
 
 class StudentEnterAttendanceRepository (private val studentEnterAttendanceDao : StudentEnterAttendanceDao) {
 
-    val getAllStudents : LiveData<List<StudentEnterAttendance>> = studentEnterAttendanceDao.getAllStudents()
+    val getAllStudents :LiveData<List<StudentEnterAttendance>> = studentEnterAttendanceDao.getAllStudents()
     suspend fun addStudent(studentEnter : StudentEnterAttendance){
         studentEnterAttendanceDao.addStudent(studentEnter)
     }
@@ -15,8 +15,8 @@ class StudentEnterAttendanceRepository (private val studentEnterAttendanceDao : 
         studentEnterAttendanceDao.deleteAttendanceTable()
     }
 
-    suspend fun updateStudentAttendance(attendance : Int , id : Int){
-        studentEnterAttendanceDao.updateStudentAttendance(attendance , id)
+    suspend fun updateStudent(student : StudentEnterAttendance){
+        studentEnterAttendanceDao.updateStudent(student)
     }
 
     fun getStudentById(id: Int) : StudentEnterAttendance{

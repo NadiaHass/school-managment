@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tasdjilati">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-    <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -15,32 +16,36 @@
 
     <queries>
         <intent>
-            <action android:name="android.intent.action.SENDTO"/>
-            <data android:scheme="smsto"/>
+            <action android:name="android.intent.action.SENDTO" />
+
+            <data android:scheme="smsto" />
         </intent>
     </queries>
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasdjilati">
-        <receiver android:name=".notifications.Notification"
-            android:enabled="true"/>
-        <activity android:name=".ui.main.exit.ExitAttendanceActivity"></activity>
+        <activity android:name=".ui.transport.TransportActivity"></activity>
+
+        <receiver
+            android:name=".notifications.Notification"
+            android:enabled="true" />
+
+        <activity android:name=".ui.main.exit.ExitAttendanceActivity" />
         <activity android:name=".ui.main.enter.EnterAttendanceActivity" />
-        <activity android:name=".ui.splash.SplashActivity" >
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.main.MainActivity" />
     </application>
 
 </manifest>

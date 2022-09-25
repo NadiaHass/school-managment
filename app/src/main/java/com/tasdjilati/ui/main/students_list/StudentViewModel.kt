@@ -38,6 +38,12 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun deleteAllStudents(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllStudents()
+        }
+    }
+
     fun getStudentById(id: Int) : Student {
         return repository.getStudentById(id)
     }
@@ -49,5 +55,6 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
     fun isRowExists(id : Int) : Boolean{
         return repository.isRowExists(id)
     }
+
 
 }

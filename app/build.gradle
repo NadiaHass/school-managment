@@ -82,8 +82,10 @@ dependencies {
     //floating action button
     implementation("com.getbase:floatingactionbutton:1.10.1")
 
-//    //import excel
-//    implementation "net.sourceforge.jexcelapi:jx1:2.6.12"
+    // work manager
+    implementation"androidx.work:work-runtime:2.7.1"
+    implementation"androidx.work:work-runtime-ktx:2.7.1"
+
 
     //apache
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'

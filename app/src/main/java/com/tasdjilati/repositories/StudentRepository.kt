@@ -20,6 +20,11 @@ class StudentRepository(private val studentDao : StudentDao) {
         studentDao.updateStudent(student)
     }
 
+    suspend fun deleteAllStudents(){
+        studentDao.deleteAllStudents()
+    }
+
+
     fun getStudentById(id: Int) : Student {
         return studentDao.getStudentById(id)
     }

@@ -17,8 +17,8 @@ class StudentExitAttendanceRepository (private val studentExitAttendanceDao : St
         studentExitAttendanceDao.deleteAttendanceTable()
     }
 
-    suspend fun updateStudentAttendance(attendance : Int , id : Int){
-        studentExitAttendanceDao.updateStudentAttendance(attendance , id)
+    suspend fun updateStudent(student : StudentExitAttendance){
+        studentExitAttendanceDao.updateStudent(student)
     }
 
     fun getStudentById(id: Int) : StudentExitAttendance {

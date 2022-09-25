@@ -1,6 +1,7 @@
 package com.tasdjilati.ui.main.exit
 
 import android.Manifest
+import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -15,11 +16,14 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasdjilati.data.entities.StudentEnterAttendance
 import com.tasdjilati.data.entities.StudentExitAttendance
 import com.tasdjilati.databinding.FragmentStudentsExitBinding
 import com.tasdjilati.ui.main.students_list.StudentViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class StudentsExitFragment : Fragment() {
@@ -46,12 +50,64 @@ class StudentsExitFragment : Fragment() {
 
 
         binding.btnCancel.setOnClickListener {
-            deleteStudentAttendanceList()
-        }
+            val builder: AlertDialog.Builder = context.let {
+                AlertDialog.Builder(it)
+            }
+
+            builder.setMessage("Voulez vous vraiment annuler le processus ?")
+                .setTitle("Annuler")
+
+            builder.apply {
+                setPositiveButton("Oui") { dialog, id ->
+                    try{
+                        deleteStudentAttendanceList()
+                        insertStudents()
+
+                    }catch(e : Exception){
+
+                    }
+                }
+                setNegativeButton("Non") { dialog, id ->
+                    dialog.dismiss()
+                }
+            }
+            val dialog: AlertDialog? = builder.create()
+
+            dialog!!.show()        }
 
         binding.btnTerminate.setOnClickListener {
-            sendSmsToAbsents()
-            deleteStudentAttendanceList()
+            try{
+                val builder: AlertDialog.Builder = context.let {
+                    AlertDialog.Builder(it)
+                }
+
+                builder.setMessage("Voulez vous vraiment terminer le processus ?")
+                    .setTitle("Terminer")
+
+                builder.apply {
+                    setPositiveButton("Oui") { dialog, id ->
+                        try{
+                            sendSmsToAbsents()
+                            deleteStudentAttendanceList()
+                            insertStudents()
+
+                        }catch(e : Exception){
+
+                        }
+                        sendSmsToAbsents()
+                        deleteStudentAttendanceList()
+                        insertStudents()
+                    }
+                    setNegativeButton("Non") { dialog, id ->
+                        dialog.dismiss()
+                    }
+                }
+                val dialog: AlertDialog? = builder.create()
+
+                dialog!!.show()
+            }catch (e : Exception){
+
+            }
         }
 
         return binding.root
@@ -63,25 +119,31 @@ class StudentsExitFragment : Fragment() {
 
     }
 
-    private fun sendSmsToAbsents() {
-        for (student in studentsList!!){
-            if (student.attendance == 0)
-                sendSMS(student , "Votre enfant est absent")
+
+    private fun sendSmsToAbsents()= lifecycleScope.launch{
+        for (student in studentsList!!)  {
+            if (student.attendance == 0){
+                sendSMS(student.numParent1, "Votre enfant ${student.name} ${student.surname} est absent, veuillez justifier la cause")
+                delay(200L)
+                sendSMS(student.numParent2 , "Votre enfant ${student.name} ${student.surname} est absent, veuillez justifier la cause")
+                delay(200L)
+            }
+
         }
     }
 
-    private fun sendSMS(student : StudentExitAttendance, message : String) {
-        if (checkSmsPermission()) {
-                try {
-                    val sentPI: PendingIntent =
-                        PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                    SmsManager.getDefault()
-                        .sendTextMessage(student.numParent1, null, message, sentPI, null)
-                    SmsManager.getDefault()
-                        .sendTextMessage(student.numParent2, null, message, sentPI, null)
-                } catch (e: Exception) {
+    private fun sendSMS(phoneNumber: String, message: String) {
+        if(checkSmsPermission() && phoneNumber.isNotEmpty()){
+            val SENT = "SMS_SENT"
+            val DELIVERED = "SMS_DELIVERED"
+            val sentPI = PendingIntent.getBroadcast(activity!!, 0, Intent(
+                SENT), 0)
+            val deliveredPI = PendingIntent.getBroadcast(activity!!, 0,
+                Intent(DELIVERED), 0)
+            val sms = SmsManager.getDefault()
+            sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
 
-                }
+
         }
     }
 

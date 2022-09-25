@@ -24,6 +24,9 @@ class AddNewStudentFragment : Fragment() {
         studentViewModel = ViewModelProvider(this)[StudentViewModel::class.java]
 
         binding.btnAddStudent.setOnClickListener {
+            if(binding.etNumParent2.text.toString().isEmpty()){
+                binding.etNumParent2.setText(" ")
+            }
             if (checkInput()){
                 val student = Student(0 , binding.etName.text.toString() , binding.etSurname.text.toString() ,
                     binding.etBirthDate.text.toString() , binding.etYear.text.toString() , binding.etClasse.text.toString() ,

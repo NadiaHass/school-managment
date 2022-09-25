@@ -88,13 +88,12 @@
                         android:id="@+id/btn_start"
                         android:layout_width="160dp"
                         android:layout_height="40dp"
-                        android:text="Commencer"
+                        android:text="@string/start"
                         android:textAllCaps="false"
                         android:layout_marginTop="16dp"
                         android:textColor="@color/blue"
                         android:background="@drawable/button_white_shape"/>
                 </LinearLayout>
-
 
                 <ImageView
                     android:layout_width="120dp"
@@ -241,7 +240,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-
 <!--            <androidx.cardview.widget.CardView-->
 <!--                android:id="@+id/card_students_restaurant"-->
 <!--                android:layout_width="wrap_content"-->
@@ -300,6 +298,37 @@
 <!--                        android:layout_gravity="center"-->
 <!--                        android:textSize="20sp"-->
 <!--                        android:text="@string/convocations"/>-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/card_transport"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:elevation="100dp"-->
+<!--                android:layout_margin="16dp"-->
+<!--                app:cardCornerRadius="10dp">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="120dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:src="@drawable/bus"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:text="@string/transport"/>-->
 <!--                </LinearLayout>-->
 <!--            </androidx.cardview.widget.CardView>-->
 

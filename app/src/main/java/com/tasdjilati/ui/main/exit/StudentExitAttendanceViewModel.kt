@@ -33,9 +33,9 @@ class StudentExitAttendanceViewModel (application: Application) : AndroidViewMod
         }
     }
 
-    fun updateStudentAttendance(attendance : Int, id : Int){
+    fun updateStudent(student : StudentExitAttendance){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateStudentAttendance(attendance , id)
+            repository.updateStudent(student)
         }
     }
 

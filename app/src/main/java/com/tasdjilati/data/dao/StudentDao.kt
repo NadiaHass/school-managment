@@ -6,7 +6,7 @@ import com.tasdjilati.data.entities.Student
 
 @Dao
 interface StudentDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addStudent(student: Student)
 
     @Delete
@@ -15,7 +15,7 @@ interface StudentDao {
     @Update
     suspend fun updateStudent(student : Student)
 
-    @Query("SELECT * FROM student_table ORDER BY name ASC")
+    @Query("SELECT * FROM student_table")
     fun getAllStudents() : LiveData<List<Student>>
 
     @Query("SELECT * FROM student_table WHERE id= :id")
@@ -26,4 +26,9 @@ interface StudentDao {
 
     @Query("SELECT EXISTS(SELECT * FROM student_table WHERE id= :id)")
     fun isRowExists(id : Int) : Boolean
+
+    @Query("DELETE FROM student_table")
+    suspend fun deleteAllStudents()
+
+
 }

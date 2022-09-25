@@ -32,6 +32,9 @@ class StudentExitAttendanceAdapter  (
         if (studentsList[position].attendance == 1){
             holder.errorImage.visibility = View.GONE
             holder.doneImage.visibility = View.VISIBLE
+        }else{
+            holder.errorImage.visibility = View.VISIBLE
+            holder.doneImage.visibility = View.GONE
         }
     }
 

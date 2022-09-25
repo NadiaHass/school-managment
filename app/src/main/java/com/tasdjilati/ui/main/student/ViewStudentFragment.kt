@@ -23,6 +23,8 @@ import androidmads.library.qrgenearator.QRGEncoder
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.tasdjilati.R
 import com.tasdjilati.data.entities.Student
 import com.tasdjilati.databinding.FragmentViewStudentBinding
 import java.io.File
@@ -33,7 +35,7 @@ import java.io.FileOutputStream
      private val REQUEST_CODE: Int = 1
      private val PERMISSION_REQUEST_CODE: Int = 1
      private var _binding: FragmentViewStudentBinding? = null
-    private val binding get() = _binding!!
+     private val binding get() = _binding!!
      private lateinit var bitmap: Bitmap
      private lateinit var qrEncoder: QRGEncoder
 
@@ -63,11 +65,17 @@ import java.io.FileOutputStream
         }
 
         binding.btnSave.setOnClickListener {
-            val name = student.name + "_" + student.surname
+            val name = student.name.replace("\\s" , "") + "_" + student.surname.replace("\\s" , "")
             if (checkPermission())
             createMyPDFofQRCode(name)
             else
                 requestPermission()
+        }
+
+        binding.ivUpdateStudent.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putSerializable("student" , student)
+            Navigation.findNavController(binding.root).navigate(R.id.action_viewStudentFragment_to_updateStudentFragment , bundle)
         }
 
         return binding.root

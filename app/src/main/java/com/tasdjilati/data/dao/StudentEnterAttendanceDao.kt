@@ -1,30 +1,27 @@
 package com.tasdjilati.data.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.tasdjilati.data.entities.StudentEnterAttendance
 
 @Dao
 interface StudentEnterAttendanceDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addStudent(studentEnter: StudentEnterAttendance)
 
-    @Query("SELECT * FROM enter_attendance_table ORDER BY name ASC")
+    @Update
+    suspend fun updateStudent(student : StudentEnterAttendance)
+
+    @Query("SELECT * FROM enter_attendance_table")
     fun getAllStudents() : LiveData<List<StudentEnterAttendance>>
 
     @Query("DELETE FROM enter_attendance_table")
     suspend fun deleteAttendanceTable()
 
-    @Query("UPDATE enter_attendance_table SET attendance = :attendance WHERE id= :id")
-    suspend fun updateStudentAttendance(attendance : Int , id : Int)
-
     @Query("SELECT * FROM enter_attendance_table WHERE id= :id")
     fun getStudentById(id: Int) : StudentEnterAttendance
 
-    @Query("SELECT EXISTS(SELECT * FROM student_table WHERE id= :id)")
+    @Query("SELECT EXISTS(SELECT * FROM enter_attendance_table WHERE id= :id)")
     fun isRowExists(id : Int) : Boolean
 
 }

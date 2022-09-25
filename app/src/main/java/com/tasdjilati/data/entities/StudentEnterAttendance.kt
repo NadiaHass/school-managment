@@ -6,11 +6,14 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "enter_attendance_table")
 data class StudentEnterAttendance (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
     var id : Int ,
+    @ColumnInfo(name = "name")
     var name : String ,
+    @ColumnInfo(name = "surname")
     var surname : String ,
+    @ColumnInfo(name = "date")
     var birthDate : String ,
     var year : String ,
     var classe : String ,

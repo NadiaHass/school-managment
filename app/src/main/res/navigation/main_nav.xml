@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_studentsListFragment_to_viewStudentFragment"
             app:destination="@id/viewStudentFragment" />
+        <action
+            android:id="@+id/action_studentsListFragment_to_qrCodeListsFragment"
+            app:destination="@id/qrCodeListsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewStudentFragment"
@@ -53,7 +56,11 @@
         android:id="@+id/viewStudentFragment"
         android:name="com.tasdjilati.ui.main.student.ViewStudentFragment"
         android:label="fragment_view_student"
-        tools:layout="@layout/fragment_view_student" />
+        tools:layout="@layout/fragment_view_student" >
+        <action
+            android:id="@+id/action_viewStudentFragment_to_updateStudentFragment"
+            app:destination="@id/updateStudentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/QRScannerFragment"
         android:name="com.tasdjilati.ui.main.scanner.QRScannerEnterFragment"
@@ -115,4 +122,13 @@
         android:name="com.tasdjilati.ui.settings.ChangeLanguageFragment"
         android:label="fragment_change_language"
         tools:layout="@layout/fragment_change_language" />
+    <fragment
+        android:id="@+id/qrCodeListsFragment"
+        android:name="com.tasdjilati.ui.qrLists.QrCodeListsFragment"
+        android:label="fragment_qr_code_lists"
+        tools:layout="@layout/fragment_qr_code_lists" />
+    <fragment
+        android:id="@+id/updateStudentFragment"
+        android:name="com.tasdjilati.ui.main.student.UpdateStudentFragment"
+        android:label="UpdateStudentFragment" />
 </navigation>

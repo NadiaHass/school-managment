@@ -48,19 +48,17 @@ class HomeQRScannerFragment : Fragment() {
 
     private fun startScanning() {
         codeScanner = CodeScanner(activity!!, binding.scannerView)
-        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
-        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
-        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
-        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
-        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = false // Whether to enable flash or not
+        codeScanner.camera = CodeScanner.CAMERA_BACK
+        codeScanner.formats = CodeScanner.ALL_FORMATS
+        codeScanner.autoFocusMode = AutoFocusMode.SAFE
+        codeScanner.scanMode = ScanMode.SINGLE
+        codeScanner.isAutoFocusEnabled = true
+        codeScanner.isFlashEnabled = false
         codeScanner.decodeCallback = DecodeCallback {
-            activity?.runOnUiThread {
-                Toast.makeText(requireActivity(), "Id d'eleve: ${it.text}", Toast.LENGTH_LONG).show()
-            }
+
             showStudentInfo(it.text.toInt())
         }
-        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+        codeScanner.errorCallback = ErrorCallback {
             activity?.runOnUiThread {
                 Toast.makeText(requireActivity(), "Camera initialization error: ${it.message}",
                     Toast.LENGTH_LONG).show()
@@ -76,7 +74,9 @@ class HomeQRScannerFragment : Fragment() {
                     showDialogInfo(student)
                 }
             }else{
-                Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
+                }
             }
 
         }catch (e : Exception){

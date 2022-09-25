@@ -1,9 +1,11 @@
 package com.tasdjilati.ui.main.scanner
 
 import android.Manifest
+import android.app.Activity
 import android.app.PendingIntent
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
 import androidx.fragment.app.Fragment
@@ -20,10 +22,14 @@ import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.tasdjilati.R
+import com.tasdjilati.data.entities.StudentExitAttendance
 import com.tasdjilati.databinding.FragmentQRScannerEnterBinding
 import com.tasdjilati.databinding.FragmentQRScannerExitBinding
 import com.tasdjilati.ui.main.enter.StudentEnterAttendanceViewModel
 import com.tasdjilati.ui.main.exit.StudentExitAttendanceViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class QRScannerExitFragment : Fragment() {
@@ -55,20 +61,30 @@ class QRScannerExitFragment : Fragment() {
 
     private fun startScanning() {
         codeScanner = CodeScanner(activity!!, binding.scannerView)
-        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
-        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
-        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
-        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
-        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = false // Whether to enable flash or not
+        codeScanner.camera = CodeScanner.CAMERA_BACK
+        codeScanner.formats = CodeScanner.ALL_FORMATS
+        codeScanner.autoFocusMode = AutoFocusMode.SAFE
+        codeScanner.scanMode = ScanMode.SINGLE
+        codeScanner.isAutoFocusEnabled = true
+        codeScanner.isFlashEnabled = false
         codeScanner.decodeCallback = DecodeCallback {
-            activity?.runOnUiThread {
-                Toast.makeText(requireActivity(), "Id d'eleve: ${it.text}", Toast.LENGTH_LONG).show()
-                updateStudentAttendance(it.text)
+            if (studentExitViewModel.isRowExists(it.text.toInt())){
+                val student = studentExitViewModel.getStudentById(it.text.toInt())
+
+                if(student.attendance == 0){
+                    updateStudentAttendance(student)
+                }else{
+                    activity?.runOnUiThread {
+                        Toast.makeText(requireActivity(), "Le message est deja envoye",Toast.LENGTH_LONG).show()
+                    }
+                }
+            }else{
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
+                }
             }
-            sendSMS(it.text.toInt() , "Votre enfant est present")
-        }
-        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+      }
+        codeScanner.errorCallback = ErrorCallback {
             activity?.runOnUiThread {
                 Toast.makeText(requireActivity(), "Camera initialization error: ${it.message}",
                     Toast.LENGTH_LONG).show()
@@ -76,20 +92,20 @@ class QRScannerExitFragment : Fragment() {
         }
     }
 
-    private fun sendSMS(id: Int , message : String) {
-        val student = studentExitViewModel.getStudentById(id)
-        if (checkSmsPermission()){
-            if (student.attendance == 0){
-                try {
-                    val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                    SmsManager.getDefault().sendTextMessage(student.numParent1, null, message, sentPI, null)
-                    SmsManager.getDefault().sendTextMessage(student.numParent2, null, message, sentPI, null)
-                }catch (e : Exception){
+    private fun sendSMS(phoneNumber: String, message: String) = CoroutineScope(Dispatchers.IO).launch {
+        if(checkSmsPermission() && phoneNumber.isNotEmpty()){
+            val SENT = "SMS_SENT"
+            val DELIVERED = "SMS_DELIVERED"
+            val sentPI = PendingIntent.getBroadcast(activity!!, 0, Intent(
+                SENT), 0)
+            val deliveredPI = PendingIntent.getBroadcast(activity!!, 0,
+                Intent(DELIVERED), 0)
+            val sms = SmsManager.getDefault()
+            sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
 
-                }
-            }
         }
     }
+
 
     private fun checkSmsPermission() : Boolean{
         return if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.SEND_SMS)
@@ -104,16 +120,14 @@ class QRScannerExitFragment : Fragment() {
         }
     }
 
-    private fun updateStudentAttendance(id: String) {
+    private fun updateStudentAttendance(student : StudentExitAttendance) {
         try {
-//            if (studentExitViewModel.isRowExists(id.toInt())){
-//                studentExitViewModel.updateStudentAttendance(1 , id.toInt())
-//
-//            }else{
-//                Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
-//            }
+                student.attendance = 1
+                studentExitViewModel.updateStudent(student)
 
-            studentExitViewModel.updateStudentAttendance(1 , id.toInt())
+                sendSMS(student.numParent1 , "Votre enfant ${student.name} ${student.surname} est present")
+                sendSMS(student.numParent2 , "Votre enfant ${student.name} ${student.surname} est present")
+
         }catch (e : Exception){
 
         }

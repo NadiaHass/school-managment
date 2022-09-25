@@ -1,9 +1,11 @@
 package com.tasdjilati.ui.main.convocation
 
 import android.Manifest
+import android.app.Activity
 import android.app.PendingIntent
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
 import androidx.fragment.app.Fragment
@@ -24,6 +26,10 @@ import com.tasdjilati.R
 import com.tasdjilati.data.entities.Student
 import com.tasdjilati.databinding.FragmentConvocationBinding
 import com.tasdjilati.ui.main.students_list.StudentViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ConvocationFragment : Fragment() {
@@ -43,16 +49,14 @@ class ConvocationFragment : Fragment() {
 
         studentViewModel = ViewModelProvider(this)[StudentViewModel::class.java]
 
+        binding.etMessage.setText("Votre enfant est convoqué")
+
         checkForPermission()
 
         startScanning()
 
         binding.scannerView.setOnClickListener {
             codeScanner.startPreview()
-        }
-
-        binding.btnSendMessage.setOnClickListener {
-            sendSms(student.numParent1 , student.numParent2)
         }
 
         return binding.root
@@ -67,17 +71,18 @@ class ConvocationFragment : Fragment() {
         }
     }
 
-    private fun sendSms(numParent1: String, numParent2: String) {
-        if (checkSmsPermission()){
-                try {
-                    val sentPI: PendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), 0)
-                    SmsManager.getDefault().sendTextMessage(numParent1, null, binding.etMessage.text.toString()
-                        , sentPI, null)
-                    SmsManager.getDefault().sendTextMessage(numParent2, null,  binding.etMessage.text.toString()
-                        , sentPI, null)
-                }catch (e : Exception){
+    private fun sendSMS(phoneNumber: String, message: String) = CoroutineScope(Dispatchers.IO).launch {
+        if(checkSmsPermission() && phoneNumber.isNotEmpty()){
+            val SENT = "SMS_SENT"
+            val DELIVERED = "SMS_DELIVERED"
+            val sentPI = PendingIntent.getBroadcast(activity!!, 0, Intent(
+                SENT), 0)
+            val deliveredPI = PendingIntent.getBroadcast(activity!!, 0,
+                Intent(DELIVERED), 0)
+            val sms = SmsManager.getDefault()
+            sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
 
-                }
+
         }
     }
 
@@ -94,32 +99,31 @@ class ConvocationFragment : Fragment() {
         }
     }
 
+
     private fun startScanning() {
         codeScanner = CodeScanner(activity!!, binding.scannerView)
-        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
-        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
-        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
-        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
-        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = true // Whether to enable flash or not
+        codeScanner.camera = CodeScanner.CAMERA_BACK
+        codeScanner.formats = CodeScanner.ALL_FORMATS
+        codeScanner.autoFocusMode = AutoFocusMode.SAFE
+        codeScanner.scanMode = ScanMode.SINGLE
+        codeScanner.isAutoFocusEnabled = true
+        codeScanner.isFlashEnabled = false
         codeScanner.decodeCallback = DecodeCallback {
-            activity?.runOnUiThread {
-                Toast.makeText(requireActivity(), "Id d'eleve: ${it.text}", Toast.LENGTH_LONG).show()
+            if (studentViewModel.isRowExists(it.text.toInt())&& binding.etMessage.text.toString().isNotEmpty()){
+                val student = studentViewModel.getStudentById(it.text.toInt())
+                sendSMS(student.numParent1 , binding.etMessage.text.toString())
+                sendSMS(student.numParent2 , binding.etMessage.text.toString())
+            }else{
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext() , "Id n'existe pas" , Toast.LENGTH_LONG).show()
+                }
             }
-            showStudentInfo(it.text.toInt())
         }
-        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+        codeScanner.errorCallback = ErrorCallback {
             activity?.runOnUiThread {
                 Toast.makeText(requireActivity(), "Camera initialization error: ${it.message}",
                     Toast.LENGTH_LONG).show()
             }
-        }
-    }
-
-    private fun showStudentInfo(id: Int) {
-        student = studentViewModel.getStudentById(id)
-        activity?.runOnUiThread {
-            binding.etMessage.setText("Bla bla bla ${student.name} ${student.surname} bla bla bla")
         }
     }
 

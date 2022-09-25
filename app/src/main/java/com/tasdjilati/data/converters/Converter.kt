@@ -15,6 +15,7 @@ class Converter {
 
     @TypeConverter
     fun toBitmap(byteArray: ByteArray): Bitmap {
+
         return BitmapFactory.decodeByteArray(byteArray , 0 , byteArray.size)
     }
 }

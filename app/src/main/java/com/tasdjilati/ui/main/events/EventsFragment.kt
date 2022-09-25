@@ -25,32 +25,32 @@ class EventsFragment : Fragment() {
         val bundle = Bundle()
 
         binding.cardExams.setOnClickListener {
-            bundle.putString("message" , "Un message .........................")
+            bundle.putString("message" , "Nous vous informons que la période des examens débute le ")
             openEventFragment(bundle)
         }
 
         binding.cardTests.setOnClickListener {
-            bundle.putString("message" , "Un message .........................")
+            bundle.putString("message" , "Nous vous informons que la période des devoirs débute le")
             openEventFragment(bundle)
         }
 
         binding.cardHolidays.setOnClickListener {
-            bundle.putString("message" , "Un message .........................")
+            bundle.putString("message" , "Nous vous informons que la période des vacances débutent le ")
             openEventFragment(bundle)
         }
 
         binding.cardTrips.setOnClickListener {
-            bundle.putString("message" , "Un message .........................")
+            bundle.putString("message" , "Nous vous informons qu'il y a une excursion le")
             openEventFragment(bundle)
         }
 
         binding.cardRegistration.setOnClickListener {
-            bundle.putString("message" , "Un message .........................")
+            bundle.putString("message" , "Nous vous informons du début de la période des inscriptions")
             openEventFragment(bundle)
         }
 
         binding.cardOther.setOnClickListener {
-            bundle.putString("message" , "Un message .........................")
+            bundle.putString("message" , "Ecrivez votre message .....")
             openEventFragment(bundle)
         }
 

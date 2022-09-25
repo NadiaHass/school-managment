@@ -3,16 +3,10 @@ package com.tasdjilati.data
 import android.content.Context
 import androidx.room.*
 import com.tasdjilati.data.converters.Converter
-import com.tasdjilati.data.dao.SplashImageDao
-import com.tasdjilati.data.dao.StudentDao
-import com.tasdjilati.data.dao.StudentEnterAttendanceDao
-import com.tasdjilati.data.dao.StudentExitAttendanceDao
-import com.tasdjilati.data.entities.SplashImage
-import com.tasdjilati.data.entities.Student
-import com.tasdjilati.data.entities.StudentEnterAttendance
-import com.tasdjilati.data.entities.StudentExitAttendance
+import com.tasdjilati.data.dao.*
+import com.tasdjilati.data.entities.*
 
-@Database(entities = [Student::class , StudentEnterAttendance::class , StudentExitAttendance::class , SplashImage::class], version = 1, exportSchema = false)
+@Database(entities = [Student::class , StudentEnterAttendance::class , StudentExitAttendance::class , SplashImage::class , StudentTransport::class], version = 1, exportSchema = false)
 @TypeConverters(Converter::class)
 
 abstract class StudentsDatabase : RoomDatabase(){
@@ -21,6 +15,7 @@ abstract class StudentsDatabase : RoomDatabase(){
     abstract fun getStudentEnterAttendanceDao(): StudentEnterAttendanceDao
     abstract fun getStudentExitAttendanceDao(): StudentExitAttendanceDao
     abstract fun getImageDao(): SplashImageDao
+    abstract fun getStudentTransportDao(): StudentTransportDao
 
     companion object {
         @Volatile
@@ -31,7 +26,7 @@ abstract class StudentsDatabase : RoomDatabase(){
                     val instance = Room.databaseBuilder(
                         context.applicationContext,
                         StudentsDatabase::class.java,
-                        "database"
+                        "allStudentsDb"
                     ).build()
                     INSTANCE = instance
                     instance

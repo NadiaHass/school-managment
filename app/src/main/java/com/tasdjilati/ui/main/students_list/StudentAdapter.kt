@@ -33,6 +33,7 @@ class StudentAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.tvName.text = studentsList[position].name + " " + studentsList[position].surname
+//        holder.tvName.text = studentsList[position].id.toString()
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()

@@ -50,5 +50,10 @@
     <string name="remind_me">Rappeler moi</string>
     <string name="label_qr_code">Exporter QR code pdf</string>
     <string name="label_import">Importer fichier excel</string>
+    <string name="start">Commencer</string>
+    <string name="destination">Destination</string>
+    <string name="id" translatable="false">Id</string>
+    <string name="transport">Transport</string>
+    <string name="modifier_un_eleve">Modifier un eleve</string>
 
 </resources>
